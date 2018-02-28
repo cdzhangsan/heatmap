@@ -1,0 +1,88 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+	<meta charset="UTF-8">
+	<title>用户行为分析</title>
+	<script src="js/include.js" type="text/javascript"></script>
+</head>
+<body>
+<div class="wrapBody clearFix">
+	<div class="menuBox"></div>
+	<div class="bodyR">
+		<div class="titleInfo">用户行为分析</div>
+		<div class="behaviorBox">
+			<ul class="clearFix">
+				<li><div class="behaviorPie" id="applyBehavior"></div></li>
+				<li><div class="behaviorPie" id="hotForum"></div></li>
+				<li><div class="behaviorPie" id="terminalType"></div></li>
+				<li><div class="behaviorPie" id="urlRank"></div></li>
+			</ul>
+		</div>
+	</div>
+</div>
+</body>
+<script src='js/echarts.min.js' type='text/javascript'></script>
+<script>
+	$(function(){
+		getData();
+	})
+	//初始化数据
+	var colorAll=["#61af26","#e14a4a","#4b8bd7","#fa8a04","#6db5b5","#c76bcd","#e3c708","#9ac372","#d67b62","#9d72ce","#8fdabe"];
+	function getData(){
+		ajax_get_data('behavior_analyze.data',function(data){
+			/*应用行为排行图*/
+			chartPie('applyBehavior','应用行为排行图',data.applyBehaviorList,colorAll)
+			/*热门论坛排行图*/
+			chartPie('hotForum','热门论坛排行图',data.hotForumList,colorAll)
+			/*累积到店终端分布图*/
+			chartPie('terminalType','累积到店终端分布图',data.terminalTypeList,colorAll)
+			/*URL排行图*/
+			chartPie('urlRank','URL排行图',data.urlRankList,colorAll)
+		})
+	}
+	//饼图
+	function chartPie(id,title,data,color){
+		var myChart = echarts.init(document.getElementById(id));
+		var arr=data;
+		var nameArr=[];
+		for(var i=0;i<arr.length;i++){
+			nameArr.push(arr[i].name);
+		}
+		var option = {
+			title : {
+				text:title,
+				x:'center'
+			},
+			tooltip : {
+				trigger: 'item',
+				formatter: "{a} <br/>{b} : {c} ({d}%)"
+			},
+			color:color,
+			legend: {
+				orient: 'vertical',
+				left: 'left',
+				data:nameArr
+			},
+			series : [
+				{
+					name: title,
+					type: 'pie',
+					radius : '55%',
+					center: ['50%', '60%'],
+					data:data,
+					itemStyle: {
+						emphasis: {
+							shadowBlur: 10,
+							shadowOffsetX: 0,
+							shadowColor: 'rgba(0, 0, 0, 0.5)'
+						}
+					}
+				}
+			]
+		};
+
+		myChart.setOption(option);
+	}
+
+</script>
+</html>

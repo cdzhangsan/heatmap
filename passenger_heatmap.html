@@ -1,0 +1,134 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+	<meta charset="UTF-8">
+	<title>客流分布图</title>
+	<script src="js/include.js" type="text/javascript"></script>
+	<script src="js/heatmap.min.js" type="text/javascript"></script>
+</head>
+<body>
+<div class="wrapBody clearFix">
+	<div class="menuBox"></div>
+	<div class="bodyR">
+		<div class="titleInfo clearFix">
+			<label>客流分布图</label>
+		</div>
+		<div class="heatmapMain">
+			<div class="tit choseMap">
+				<span id="title">选择地图</span>
+				<select id="mapPlace" onchange="mapViewUpdate()">
+				</select>
+			</div>
+			<div class="mapMain" >
+				<div class="mapBox" style="background: url(img_t/map1.jpg)">
+					<div class="heatmap" id="heatmap"></div>
+				</div>
+			</div>
+		</div>
+	</div>
+</div>
+</body>
+
+<script>
+	$(function(){
+		dataLoadInit();
+	})
+	var datall;
+	function dataLoadInit() {
+		datall = {};
+		$('#mapPlace').append('<option>无</option>');
+		$('.nomapmsg').show();
+		$('.mapBox').hide();
+
+		// 分布图列表加载
+		ajax_get_data("devpos_maplist.data", function(data) {
+			datall.maps = datall.maps || {};
+			datall.path = data.path || "/tmp/local/devpos_files/";
+			var itemarray = data.filelist.split("<");
+			if (itemarray.length >= 1) {
+
+				$('.nomapmsg').hide();
+				$('.mapBox').show();
+				clearOptions($('#mapPlace')[0]);
+				for (var i = 0; i < itemarray.length; ++i) {
+					var row = {};
+					var kvs = itemarray[i].split("|");
+					if (kvs.length < 2) continue;
+					for (var j = 0; j < kvs.length; ++j) {
+						var off = kvs[j].indexOf(":");
+						if (off > 0) {
+							var key = kvs[j].substr(0, off);
+							row[key] = kvs[j].substr(off + 1);
+						}
+					}
+					if (typeof row.fnm != "string") continue;
+					datall.maps[row.fnm] = datall.maps[row.fnm] || {};
+					datall.maps[row.fnm].info = row;
+					$('#mapPlace').append('<option value="' + row.fnm + '" data="' + row.nam + '">' + row.nam + '</option>');
+				}
+				showDeviceMap();
+			}
+		}, null);
+
+	}
+
+	// 显示指定分布图
+	function showDeviceMap(fnm) {
+		if (typeof fnm != "string" || fnm == "") {
+			if ($('#mapPlace')[0].options.length == 0) {
+				alert("没有分布图可显示！");
+				return false;
+			}
+			fnm = $('#mapPlace')[0].options[0].value;
+		}
+		$('#mapPlace').val(fnm);
+		$('.mapBox').css('background-image', 'url(' + datall.path + fnm + ')');
+		var url='heatmap.data?map='+fnm;
+
+		ajax_get_data(url,show,null);
+	}
+
+	function show(data){
+
+		var heatmapInstance = h337.create({
+			container: document.querySelector('#heatmap')
+			,radius: 80
+		});
+		var width = 800;
+		var height = 500;
+		var _data = {
+			max: getMax(data.points),
+			data: data.points
+		};
+
+		heatmapInstance.setData(_data);
+	}
+
+	function getMax(arr){
+		var max=0;
+		if(arr.length>1){
+			for(var i=0;i<arr.length;i++){
+				if(arr[i].value>max){
+					max=arr[i].value;
+				}
+			}
+
+		}
+		return max
+	}
+	// 平面图显示刷新
+	function mapViewUpdate(nfnm) {
+		if (typeof nfnm == "string") {
+			var obj = $('#mapPlace')[0];
+			for (var i = 0; i < obj.options.length; ++i) {
+				if (obj.options[i].value == nfnm) {
+					$('#mapPlace').val(nfnm);
+					break;
+				}
+			}
+		}
+		fnm = $('#mapPlace').val();
+		showDeviceMap(fnm);
+	}
+</script>
+</html>

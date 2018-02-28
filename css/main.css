@@ -1,0 +1,228 @@
+/*公共样式部分开始*/
+html, body, div, dl, dt, dd, ul, ol, li, h1, h2, h3, h4, h5, h6, pre, form, fieldset, input, textarea, p, blockquote, th, td, iframe, hr {
+	margin: 0;
+	padding: 0;
+}
+body{font-size: 14px;font-family: "Microsoft YaHei", "微软雅黑", "Verdana", "Arial", "Helvetica", "HiraginoSansGB";margin: 0px auto;text-align: center;background:#f0ebef;color: #333;}
+a {text-decoration: none;}
+i, em {font-style: normal;}
+input, textarea {vertical-align: middle;color: #666;font-size: 14px;font-family: "Microsoft YaHei", "微软雅黑", "Verdana", "Arial", "Helvetica", "HiraginoSansGB";background-color: #fff;}
+img {display: block;border: 0;}
+address, caption, cite, dfn, em, th, var {font-style: normal;font-weight: normal;}
+ol, ul {list-style: none;}
+caption, th {text-align: left;}
+h1, h2, h3, h4, h5, h6 {font-size: 100%;}
+table {border-collapse: collapse;border-spacing: 0;}
+select, input, label, button, textarea {margin: 0;padding: 0;overflow: visible;color: #666;font-size: 14px;font-family: "Microsoft YaHei", "微软雅黑", "Verdana", "Arial", "Helvetica", "HiraginoSansGB";background-color: #fff;border:none;}
+input,textarea {border: 1px solid #d7d7d7;outline: none;}
+[placeholder] {color: #999;font-variant: normal;}
+.clearFix {zoom: 1}
+.clearFix:after {clear: both;height: 0;visibility: hidden;content: "";display: block;}
+.wrapBody{width:100%;height:auto;overflow:hidden;}
+
+/*页面输入框/下拉列表/搜索框/按钮/模拟复选框样式开始*/
+.tempInput{
+	width: 210px;
+	height: 30px;
+	line-height: 30px \9;
+	border: 1px solid #b6b6b6;
+	outline: none;
+	padding: 0 10px;
+	-moz-border-radius: 3px;
+	-webkit-border-radius: 3px;
+	border-radius: 3px;
+}
+.tempInput:hover{
+	border-color: #42bec6;
+}
+
+.selectPar {
+	width: 210px;
+	height: 30px;
+	line-height: 30px;
+	margin-bottom: 15px;
+	padding: 0 10px;
+	font-size: 0;
+	border: 1px solid #b6b6b6;
+	-moz-border-radius: 5px;
+	-webkit-border-radius: 5px;
+	border-radius: 5px;
+	position: relative;
+	background-color: #fff;
+}
+.selectPar:hover {
+	border-color: #42bec6;
+}
+.selectPar:hover ul {
+	border-color: #42bec6;
+	border-top-color: #d7d7d7;
+}
+.selectPar .selectSpan {
+	display: inline-block;
+	width: 185px;
+	padding-right: 7px;
+	text-align: left;
+	height: 30px;
+	line-height: 30px;
+	vertical-align: top;
+	font-size: 14px;
+	word-break: break-all;
+	text-overflow: ellipsis;
+	overflow: hidden;
+	white-space: nowrap;
+}
+.selectArrow {
+	display: inline-block;
+	width: 7px;
+	height: 30px;
+	background: url('../img/arrow.png') no-repeat left center;
+	vertical-align: top;
+	cursor: pointer;
+}
+.selectPar ul {
+	width: 100%;
+	max-height: 120px;
+	overflow-y: auto;
+	padding: 5px 0;
+	border: 1px solid #d7d7d7;
+	position: absolute;
+	top: 29px;
+	left: -1px;
+	background-color: #fff;
+	display: none;
+	z-index: 2;
+	font-size: 14px;
+}
+.selectPar ul li {
+	padding: 0 40px 0 10px;
+	height: 30px;
+	line-height: 30px;
+	text-align: right;
+	word-break: break-all;
+	text-overflow: ellipsis;
+	overflow: hidden;
+	white-space: nowrap;
+}
+.selectPar ul li.beChose {
+	background: url('../img/checkTag.png') no-repeat right 15px center;
+}
+.selectPar ul li:hover {
+	background-color: #42bec6;
+	color: #fff;
+}
+.selectPar ul li.beChose:hover {
+	background: url('../img/checkTag2.png') no-repeat right 15px center;
+	background-color: #42bec6;
+}
+
+
+.btn{
+	width:auto;
+	min-width:70px;
+	height: 30px;
+	text-align: center;
+	line-height: 30px;
+	padding:0 10px;
+	color: #fff;
+	font-size: 14px;
+	border: 1px solid #42bec6;
+	background-color: #42bec6;
+	-moz-border-radius: 3px;
+	-webkit-border-radius: 3px;
+	border-radius: 3px;
+	cursor: pointer;
+	display: inline-block;
+}
+
+/*页面输入框/下拉列表/搜索框/按钮/模拟复选框样式结束*/
+.main_table{width:100%;}
+.main_table .th{background-color: #f3f3f3;color: #000;font-size: 16px;height: 40px;line-height: 40px;text-align: center;}
+.main_table td{height:40px;line-height:40px;border-bottom:1px solid #e4e4e4;border-right:1px solid #e4e4e4;}
+/*公共样式结束*/
+
+
+
+.menuBox{width:100px;height:auto;float:left;background:#fff;}
+.menuUl{padding:20px 0;}
+.menuUl li{width:100%;height:45px;text-align:center;padding:10px 0;}
+.menuUl li.beChose{background:#f0ebef;}
+.menuUl li  a{display:block;width:100%;height:100%;color:#333;}
+.menuUl li  i{display:block;width:100px;height:20px;background-position:center;background-repeat:no-repeat;margin-bottom:5px;}
+.ztgkIcon{background-image:url('../img/ztgk.png')}
+.klfxIcon{background-image:url('../img/klfx.png')}
+.jdfxIcon{background-image:url('../img/jdfx.png')}
+.zlfxIcon{background-image:url('../img/zlfx.png')}
+.klljIcon{background-image:url('../img/kllj.png')}
+.spglIcon{background-image:url('../img/spgl.png')}
+.sswzIcon{background-image:url('../img/sswz.png')}
+
+.bodyR{margin-left:120px;padding-right:20px;}
+.titleInfo{padding:0 20px;height:60px;line-height:60px;background:#fff;font-weight:700;text-align:left;margin-bottom:20px;}
+.titleInfo label{float:left;font-size:18px;}
+.titleR{float:right;height:100%;}
+.titleR .selectPar{display:inline-block;*display:inline;width:85px;vertical-align:super;margin-right:10px;background-color:#fff;*border-top:2px solid red;}
+.titleR .selectPar .selectSpan{width:70px;background:#fff;}
+.titleR .selectPar.analyzeType{width:115px;}
+.titleR .selectPar.analyzeType .selectSpan{width:100px;}
+.titleR .btn{margin-left:15px;}
+.peopleCounting{margin-bottom:20px;height:90px;overflow:hidden;}
+.peopleCounting ul,.annularBox ul,.behaviorBox ul,.rankTrend{margin-right:-2%;}
+.peopleCounting li,.annularBox ul li{float:left;width:23%;height:90px;margin-right:2%;background:#fff;text-align:left;}
+.peopleCounting h3{font-size:16px;padding:15px;}
+.peopleCounting p{padding:0 15px 15px 15px;}
+.peopleCounting p span{color:#fc9458;margin-right:10px;}
+.peopleCounting p span em{font-size:18px;}
+.riseIcon,.declineIcon{display:inline-block;width:7px;height:10px;margin:0 5px;vertical-align:middle;}
+.riseIcon{background-image:url('../img/rise.png');}
+.declineIcon{background-image:url('../img/decline.png');}
+.rankTrend{margin-bottom:20px;height:420px;overflow:hidden;}
+.rtModel{float:left;width:48%;height:420px;margin-right:2%;background:#fff;}
+.shopTab{font-size:0;}
+.shopTab span{display:block;float:left;width:50%;*width:49%;height:50px;background:#f8f3f7;border-top:1px solid #d8d3d7;text-align:center;line-height:50px;font-size:18px;}
+.shopTab span.beChose{background:#fff;border-top-color:#fc9458;}
+.rankTable{padding:15px;}
+.tableModel th,.tableModel td{width:20%;text-align:center;}
+.scrollTable{height:300px;overflow:hidden;overflow-y:auto;}
+.annularBox{height:200px;overflow:hidden;}
+.annularBox ul li{height:200px;}
+.pieDiv{padding:15px;height:170px;}
+.behaviorBox{width:100%;overflow:hidden;}
+.behaviorBox ul{margin-right:-2%;}
+.behaviorBox ul li{height:380px;width:48%;float:left;margin-right:2%;margin-bottom:20px;background:#fff;}
+.behaviorPie{padding:15px;height:350px;}
+
+
+.heatmapMain{width:100%;background: #fff;height:600px;}
+.tit.choseMap {
+	margin: 0;
+	padding: 0 5%;
+}
+
+.tit {
+	width: 90%;
+	height: 60px;
+	background: #fff;
+	text-align: left;
+	font-size: 18px;
+	color: #333;
+	line-height: 60px;
+	padding: 0 10%;
+}
+.tit select {
+	width: 150px;
+	height: 30px;
+	margin-left: 20px;
+	line-height: 30px;
+	padding-left: 10px;
+	color: #666;
+	border: 1px solid #999;
+}
+.mapMain{
+	width: 100%;
+	padding: 20px;
+	height: 550px;
+	
+}
+.mapBox,.heatmap{
+	width: 800px;height: 500px;
+}
